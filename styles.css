@@ -1,0 +1,223 @@
+/* ---- Fonts ---- */
+
+@font-face {
+    font-family: 'IM Fell DW Pica';
+    font-style: normal;
+    font-weight: 400;
+    src: local('IM FELL DW Pica Roman'), local('IM_FELL_DW_Pica_Roman'),
+         url('fonts/IMFePIrm28P.woff') format('woff'),
+         url('fonts/IMFePIrm28P.ttf') format('truetype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+    font-family: 'IM Fell DW Pica';
+    font-style: italic;
+    font-weight: 400;
+    src: local('IM FELL DW Pica Italic'), local('IM_FELL_DW_Pica_Italic'),
+         url('fonts/IMFePIit28P.woff') format('woff'),
+         url('fonts/IMFePIit28P.ttf') format('truetype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD,
+    U+F000;
+}
+
+@font-face {
+    font-family: 'fontello';
+    src: url('fonts/fontello.woff') format('woff'),
+        url('fonts/fontello.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon { font-style: normal; font-family: 'fontello' }
+.icon-twitter:before { content: '\f099'; } /* '' */
+.icon-github-circled:before { content: '\f09b'; } /* '' */
+
+/* ---- Animations ---- */
+
+@keyframes floaty {
+    0% {
+        transform: translate(0, 10px);
+    }
+    100% {
+        transform: translate(0, -10px);
+    }
+}
+
+@keyframes blur-in {
+    0% {
+        opacity: 0;
+        transform: translate(0, calc(150px - 1em));
+        filter: blur(4px);
+        max-height: 0;
+        margin: 0;
+    }
+    90% {
+        max-height: 5rem;
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+        filter: blur(0);
+    }
+}
+
+@keyframes head-in {
+    0% {
+        top: -100px;
+        filter: blur(20px);
+        opacity: 0;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+/* ---- Misc ---- */
+
+::selection {
+    background-color: #333;
+}
+
+::-moz-selection {
+    background-color: #333;
+}
+
+.pixely {
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+}
+
+/* ---- Main ---- */
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    color: white;
+    /* I'm sorry. */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: currentColor;
+}
+
+/* ---- Layout ---- */
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell DW Pica', Times, serif;
+    overflow: hidden;
+}
+
+#floating-logo {
+    animation: floaty 3s ease-in-out 0s infinite alternate;
+    width: 150px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+#floating-logo.falling {
+    animation: none;
+    filter: none;
+    transition: all 1s cubic-bezier(.43,.01,.88,.32);
+}
+
+#floating-logo.restored {
+    position: relative;
+    animation: head-in 1s ease-out 0s,
+        floaty 3s ease-in-out 0s infinite alternate-reverse;
+    animation-fill-mode: none;
+}
+
+h1 {
+    animation: blur-in 1.5s ease 0.6s;
+    animation-fill-mode: both;
+    font-size: 4rem;
+    margin: 0.5em 0 0.1em;
+    text-align: center;
+}
+
+p {
+    color: #CCC;
+    animation: blur-in 1.4s ease 0.9s;
+    animation-fill-mode: both;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+/* ---- Footer ---- */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 17.7rem;
+    margin-top: 1rem;
+    animation: blur-in 1.4s ease 1.2s;
+    animation-fill-mode: both;
+    font-size: 1rem;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+footer figure {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    color: #ccc;
+    transition: filter 0.2s ease;
+}
+
+footer figure:nth-child(2) {
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+footer figure:last-child {
+    flex-direction: row-reverse;
+}
+
+footer figure img {
+    width: 32px;
+    border-radius: 2px;
+    margin: 0 0.4rem;
+}
+
+footer figure * {
+    margin: 0 0.2rem;
+}
+
+footer figure a {
+    text-decoration: none;
+    font-style: normal;
+    transform: translate(0, 2px);  /* because text is weird */
+}
+
+
+@media (max-height: 600px) {
+    h1 {
+        margin: calc(10vh - 2rem) 0 calc(4vh - 1rem);
+    }
+    p {
+        margin: calc(6vh - 1rem) 0;
+    }
+    footer {
+        margin-top: calc(5vh - 1rem);
+    }
+}

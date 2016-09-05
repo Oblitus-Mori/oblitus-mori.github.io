@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Oblitus Mori</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    </head>
+    <body>
+        <main>
+            <img id="floating-logo" src="images/logo-glow.png"/>
+            <h1>
+                Die better.
+            </h1>
+            <p>
+                <em>Oblitus Mori</em> is an upcoming game<br/>
+                about life, death, and time travel.
+            </p>
+            <footer>
+                <figure>
+                    <img class="pixely" src="images/indietyp.png"/>
+                    <a href="https://github.com/indietyp">
+                        <i class="icon icon-github-circled"></i>
+                    </a>
+                    <a href="https://twitter.com/indietyp">
+                        <i class="icon icon-twitter"></i>
+                    </a>
+                </figure>
+                <figure>
+                    <a href="https://github.com/oblitus-mori">
+                        <i class="icon icon-github-circled"></i>
+                    </a>
+                </figure>
+                <figure>
+                    <img src="images/johannesn.png"/>
+                    <a href="https://github.com/jneubrand">
+                        <i class="icon icon-github-circled"></i>
+                    </a>
+                    <a href="https://twitter.com/jneubrand">
+                        <i class="icon icon-twitter"></i>
+                    </a>
+                </figure>
+            </footer>
+            <script>
+                function resethead(el) {
+                    el.classList.remove('restored')
+                }
+                function restorehead(el) {
+                    el.classList.remove('falling')
+                    el.classList.add('restored')
+                    el.style.filter = ''
+                    el.style.opacity = null
+                    el.style.transform = ''
+                    setTimeout(function() {resethead(el)}, 1500)
+                }
+                function tumblehead(el) {
+                    if (el.classList.contains('falling') ||
+                            el.classList.contains('restored')) {
+                        return
+                    }
+                    el.classList.remove('restored')
+                    el.classList.add('falling')
+                    el.style.filter = 'blur(20px)'
+                    el.style.opacity = 0.5
+                    el.style.transform = 'translate(' +
+                        (Math.random() * 100 - 50) + 'px, 100vh) ' +
+                        'rotate(' +
+                        (Math.random() * 1000 - 500) + 'deg)'
+                    setTimeout(function() {restorehead(el)}, 1500)
+                }
+                var head = document.querySelector('#floating-logo')
+                head.addEventListener('click', function() {tumblehead(head)});
+            </script>
+        </main>
+    </body>
+</html>
