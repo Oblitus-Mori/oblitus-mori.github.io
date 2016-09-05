@@ -208,16 +208,3 @@ footer figure a {
     font-style: normal;
     transform: translate(0, 2px);  /* because text is weird */
 }
-
-
-@media (max-height: 600px) {
-    h1 {
-        margin: calc(10vh - 2rem) 0 calc(4vh - 1rem);
-    }
-    p {
-        margin: calc(6vh - 1rem) 0;
-    }
-    footer {
-        margin-top: calc(5vh - 1rem);
-    }
-}
